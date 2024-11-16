@@ -15,7 +15,7 @@ const app = express();
 app.use(helmet())
 // limit request from some ip
 const limiter = ratelimit({
-    max: 2,
+    max: 100,
     windowMs: 60 * 60 * 1000,
     message: "Too many requests from this ip, plz try again in an hour!",
 });
@@ -33,7 +33,9 @@ app.use(cors({
 
 // Use your routes here
 app.use(express.json());
-app.use("/api" ,studentRoute);
+
+// "/api"
+app.use(studentRoute);
 app.use(courseRoute);
 app.use(userRoute);
 
