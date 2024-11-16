@@ -6,12 +6,12 @@ const { verifyAccessToken } = require('../helpers/jwtHelper');
 // routes to setup our routes
 const routes = express.Router();
 // retrieve all students
-routes.get("/retrievestudents", student_controller.retrievestudents);
+routes.get("/retrievestudents", verifyAccessToken,student_controller.retrievestudents);
 
 routes.get('/retrievestudent/:id', student_controller.retrievestudentsById);
 
 // add student to the DB
-routes.post('/addstudent', student_controller.addstudent);
+routes.post('/addstudent',verifyAccessToken, student_controller.addstudent);
 
 // update students in the DB
 routes.patch('/updatestudent/:id', student_controller.updatestudent);
